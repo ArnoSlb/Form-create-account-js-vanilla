@@ -1,0 +1,28 @@
+body {
+    background-color: #222529;
+    color: lightgray;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo{
+    width: 100px;
+}
+
+#container_button_login{
+    margin: 1%;
+}
+
+.button_login {
+    height: 20px;
+    display: inline-block;
+    padding: 10px 14px 6px;
+    border: lightgray 2px solid;
+    border-radius: 5px;
+    margin: 5px;
+}
