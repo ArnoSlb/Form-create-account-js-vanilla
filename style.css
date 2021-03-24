@@ -112,6 +112,7 @@ label {
 	opacity: 0.01;
 }
 
+[type="checkbox"]:checked + label::before,
 [type="checkbox"]:not(:checked) + label::before{
     content: '';
 	position: absolute;
@@ -120,23 +121,17 @@ label {
 	width: 1.2em;
 	height: 1.2em;
 	border: 1px solid #aaa;
-	background: none;
 	border-radius: .2em;
 	transition: all .275s;
     cursor: pointer;
 }
 
+[type="checkbox"]:not(:checked) + label::before{
+    background: none;
+}
+
 [type="checkbox"]:checked + label::before {
-	content: '';
-	position: absolute;
-	left: 0px;
-	top: -3px;
-	width: 1.2em;
-	height: 1.2em;
-	border: 1px solid #aaa;
 	background: #fceb4f;
-	border-radius: .2em;
-	transition: all .275s;
 }
 
 /* Aspect de la coche */
@@ -166,34 +161,31 @@ label {
 }
 
 .strength_security{
-    display: flex;
+    display: none;
     justify-content: space-around;
     margin: 0 20px;
     padding: 10px;
     font-size: 12px;
-    display: none;
+    transition: all .2s;
 }
 
-.strenght_security_1 {
-    color: crimson;
+.strenght_security_1, .strenght_security_2, .strenght_security_3 {
     padding-top: 5px;
-    border-top: 1px solid crimson;
     width: 33%;
     display: none;
+    border-top: 1px solid;
+}
+.strenght_security_1{
+    color: crimson;
+    border-color: crimson;
 }
 .strenght_security_2 {
     color: orange;
-    padding-top: 5px;
-    border-top: 1px solid orange;
-    width: 33%;
-    display: none;
+    border-color: orange;
 }
 .strenght_security_3 {
     color: green;
-    padding-top: 5px;
-    border-top: 1px solid green;
-    width: 33%;
-    display: none;
+    border-color: green;
 }
 
 #button_submit {
@@ -209,6 +201,15 @@ label {
 }
 #button_submit:hover{
     cursor: pointer;
+}
+#button_submit:active{
+    cursor: pointer;
+    background-color: #e0d146;
+    border: none;
+    outline: 0;
+}
+#button_submit:focus{
+    outline: 0;
 }
 
 .already_registered{
