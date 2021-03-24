@@ -81,7 +81,7 @@ label {
     display: none;
     position: absolute;
     right: 0px;
-    top: 42px;
+    top: 36px;
 }
 
 .alert_message {
@@ -138,7 +138,6 @@ label {
 [type="checkbox"]:not(:checked) + label::after,
 [type="checkbox"]:checked + label::after {
 	content: '✓';
-	speak: never; /* Pour être sûr que le lecteur d'écran ne lira pas "fois" */
 	position: absolute;
 	top: .35em;
 	left: .1em;
