@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <title>Connexion</title>
+    <title>Page de Connexion</title>
 </head>
 <body>
     <header>
@@ -21,6 +21,7 @@
     <main>
         <div id="main_container">
             <h1>Inscription</h1>
+            <div class="line"></div>
             <form action="">
                 <div class="form_group">
                     <label for="user">Nom complet</label>
@@ -50,15 +51,16 @@
                     <input type="password" id="password_check">
                     <img src="img/check.png" alt="icone de verification" class="icon_check">
                 </div>
-                <div>
-                    <label for="CGU">J'accepte les CGU/CGV</label>
+                <div class="checkbox_group">
                     <input type="checkbox" id="CGU">
+                    <label for="CGU">J'accepte les CGU/CGV</label>
+                    
                 </div>
                 
-                <button type="submit">S'inscrire</button>
+                <button type="submit" id="button_submit">S'inscrire</button>
             </form>
-            <div>
-                <p>Déja inscrit ?</p>
+            <div class="already_registered">
+                <p>Déja inscrit.e ?</p>
                 <p>Je me connecte</p>
             </div>
         </div>

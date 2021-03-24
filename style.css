@@ -1,16 +1,18 @@
 body {
     background-color: #222529;
-    color: lightgray;
+    color: white;
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
 }
 
-header{
+header {
     display: flex;
     justify-content: space-between;
 }
 
-#logo{
+#logo {
     width: 100px;
 }
 
@@ -22,8 +24,207 @@ header{
     height: 20px;
     display: inline-block;
     padding: 10px 14px 6px;
-    border: lightgray 2px solid;
+    border: white 1px solid;
     border-radius: 5px;
     margin: 5px;
 }
+.button_login:hover{
+    cursor: pointer;
+}
 
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #282c2f;
+    text-align: center;
+    padding: 30px;
+    border-radius: 15px;
+    width: 70%;
+    max-width: 400px;
+}
+
+main h1{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0 30px 30px;
+}
+
+.line {
+    width: 30px;
+    border-bottom: 1px solid gray;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+input {
+    display: block;
+    margin: 5px auto;
+    padding: 15px;
+    width: 80%;
+    outline: 0;
+    border: none;
+    background-color:  #222529;
+    border-radius: 5px;
+    color: white;
+}
+
+label {
+    text-align: left !important;
+    display: block;
+    margin: 0 28px;
+}
+
+.icon_check {
+    width: 15px;
+    display: none;
+    position: absolute;
+    right: 0px;
+    top: 42px;
+}
+
+.alert_message {
+    color: crimson;
+    display: none;
+}
+
+.form_group {
+    position: relative;
+    margin: 5px auto 20px;
+}
+
+.checkbox_group {
+    display: flex;
+    justify-content: start;
+    position: relative;
+    margin: 40px auto 20px;
+    width: 85%;
+}
+
+#CGU {
+    margin: 0;
+    padding: 0;
+    width: 5px;
+}
+
+[type="checkbox"] {
+	opacity: 0.01;
+}
+
+[type="checkbox"]:not(:checked) + label::before{
+    content: '';
+	position: absolute;
+	left: 0px;
+	top: -3px;
+	width: 1.2em;
+	height: 1.2em;
+	border: 1px solid #aaa;
+	background: none;
+	border-radius: .2em;
+	transition: all .275s;
+    cursor: pointer;
+}
+
+[type="checkbox"]:checked + label::before {
+	content: '';
+	position: absolute;
+	left: 0px;
+	top: -3px;
+	width: 1.2em;
+	height: 1.2em;
+	border: 1px solid #aaa;
+	background: #fceb4f;
+	border-radius: .2em;
+	transition: all .275s;
+}
+
+/* Aspect de la coche */
+[type="checkbox"]:not(:checked) + label::after,
+[type="checkbox"]:checked + label::after {
+	content: '✓';
+	speak: never; /* Pour être sûr que le lecteur d'écran ne lira pas "fois" */
+	position: absolute;
+	top: .35em;
+	left: .1em;
+	font-size: 1.4em;
+	color: #222529;
+	line-height: 0;
+	transition: all .2s; /* Petite transition */
+}
+
+/* Aspect non cochée */
+[type="checkbox"]:not(:checked) + label::after {
+	opacity: 0;
+	transform: scale(0) rotate(45deg);
+}
+
+/* Aspect cochée */
+[type="checkbox"]:checked + label::after {
+	opacity: 1;
+	transform: scale(1) rotate(0);
+}
+
+.strength_security{
+    display: flex;
+    justify-content: space-around;
+    margin: 0 20px;
+    padding: 10px;
+    font-size: 12px;
+    display: none;
+}
+
+.strenght_security_1 {
+    color: crimson;
+    padding-top: 5px;
+    border-top: 1px solid crimson;
+    width: 33%;
+    display: none;
+}
+.strenght_security_2 {
+    color: orange;
+    padding-top: 5px;
+    border-top: 1px solid orange;
+    width: 33%;
+    display: none;
+}
+.strenght_security_3 {
+    color: green;
+    padding-top: 5px;
+    border-top: 1px solid green;
+    width: 33%;
+    display: none;
+}
+
+#button_submit {
+    background-color: #fceb4f;
+    border: none;
+    border-radius: 5px;
+    color: #222529;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    font-size: 1em;
+    padding: 10px 16px;
+    margin: 20px;
+}
+#button_submit:hover{
+    cursor: pointer;
+}
+
+.already_registered{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0 10px;
+}
+
+.already_registered p{
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.already_registered p:last-child{
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
