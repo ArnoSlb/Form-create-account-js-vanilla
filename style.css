@@ -87,6 +87,7 @@ label {
 .alert_message {
     color: crimson;
     display: none;
+    font-size: 13px;
 }
 
 .form_group {
@@ -161,28 +162,28 @@ label {
 
 .strength_security{
     display: none;
-    justify-content: space-around;
+    justify-content: center;
     margin: 0 20px;
-    padding: 10px;
+    padding: 10px 0 0;
     font-size: 12px;
     transition: all .2s;
 }
 
-.strenght_security_1, .strenght_security_2, .strenght_security_3 {
+.strength_security_1, .strength_security_2, .strength_security_3 {
     padding-top: 5px;
-    width: 33%;
+    width: 30%;
     display: none;
     border-top: 1px solid;
 }
-.strenght_security_1{
+.strength_security_1{
     color: crimson;
     border-color: crimson;
 }
-.strenght_security_2 {
+.strength_security_2 {
     color: orange;
     border-color: orange;
 }
-.strenght_security_3 {
+.strength_security_3 {
     color: green;
     border-color: green;
 }
