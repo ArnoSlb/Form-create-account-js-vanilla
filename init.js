@@ -1,3 +1,5 @@
+const toConnect = document.getElementById('to_connect')
+const toRegister = document.getElementById('to_register')
 const formRegister = document.getElementById('form_register')
 const inputUser = document.getElementById('user')
 const inputMail = document.getElementById('email')
@@ -6,14 +8,93 @@ const inputPasswordCheck = document.getElementById('password_check')
 const checkboxCGU = document.getElementById('CGU')
 const allCheckIcon = document.querySelectorAll('.icon_check')
 const allAlertMessage = document.querySelectorAll('.alert_message')
+const allFormGroup = document.querySelectorAll('.form_group')
+const checkBoxGroup = document.querySelectorAll('.checkbox_group')
 const strengthSecurity = document.querySelector('.strength_security')
 const strgthS1 = document.querySelector('.strength_security_1')
 const strgthS2 = document.querySelector('.strength_security_2')
 const strgthS3 = document.querySelector('.strength_security_3')
 const CGU = document.getElementById('CGU')
+const stayConnectedCheck = document.getElementById('stay_connected')
+const forgotPwd = document.getElementById('forgot_pwd')
+const buttonSubmit = document.getElementById('button_submit')
+const signInOrUp = document.getElementById('sign_in_or_up')
+let isRegistered = false
 
 // const regexEmail = /\S+@\S+\.\S+/;
 const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+checkBoxGroup[1].style.display = "none"
+
+// Switch interface
+const switchUI = function(){
+    console.log('isRegistered', isRegistered)
+    if(isRegistered === false){
+        allFormGroup[0].style.display = "block"
+        allFormGroup[3].style.display = "block"
+        document.querySelector('h1').innerText = "Inscription"
+        forgotPwd.style.display = "none"
+        checkBoxGroup[0].style.display = "flex"
+        checkBoxGroup[1].style.display = "none"
+        buttonSubmit.innerText = "S'inscrire"
+        document.getElementById('sign_in_or_up_text').innerText ='Déja inscrit.e ?'
+        signInOrUp.innerText ='Je me connecte'
+    }
+    else if(isRegistered === true){
+        allFormGroup[0].style.display = "none"
+        allFormGroup[3].style.display = "none"
+        document.querySelector('h1').innerText = "Connexion"
+        forgotPwd.style.display = "block"
+        checkBoxGroup[0].style.display = "none"
+        checkBoxGroup[1].style.display = "flex"
+        buttonSubmit.innerText = "Se connecter"
+        document.getElementById('sign_in_or_up_text').innerText ='Pas encore de compte ?'
+        signInOrUp.innerText ='Je m\'inscris'
+    }
+}
+
+const resetForm = function(){
+    // reset form
+    inputUser.value = ""
+    inputMail.value = ""
+    inputPassword.value = ""
+    inputPasswordCheck.value = ""
+    allCheckIcon[0].style.display = "none"
+    allCheckIcon[1].style.display = "none"
+    allCheckIcon[2].style.display = "none"
+    allCheckIcon[3].style.display = "none"
+    allAlertMessage[0].style.display = "none"
+    allAlertMessage[1].style.display = "none"
+    allAlertMessage[2].style.display = "none"
+    allAlertMessage[3].style.display = "none"
+    strengthSecurity.style.display = "none"
+    strgthS1.style.display = "none"
+    strgthS2.style.display = "none"
+    strgthS3.style.display = "none"
+    CGU.checked = false
+    stayConnectedCheck.checked = false
+
+}  
+
+// Switch page connexion
+toConnect.addEventListener('click', function(){
+    isRegistered = true;
+    switchUI()
+    resetForm()
+})
+
+// Switch page inscription
+toRegister.addEventListener('click', function(){
+    isRegistered = false;
+    switchUI()
+    resetForm()
+})
+
+signInOrUp.addEventListener('click', function(){
+    isRegistered = !isRegistered;
+    switchUI()
+    resetForm()
+})
 
 // Vérification nom d'utilisateur correct
 inputUser.addEventListener('input', function(e){
@@ -28,15 +109,17 @@ inputUser.addEventListener('input', function(e){
 
 // Vérification email correct
 inputMail.addEventListener('input', function(e){
-    // search va permettre de vérifier que la valeur de l'input 
-    // match avec le schéma décrit dans regexEmail
-    // Si ça match la valeur sera égale à 0 (l'index du premier résultat), sinon -1
-    if(e.target.value.search(regexEmail) === 0){
-        allCheckIcon[1].style.display = "block"
-        allAlertMessage[1].style.display = "none"
-    }
-    else if(e.target.value.search(regexEmail) === -1){
-        allCheckIcon[1].style.display = "none"
+    if(isRegistered === false){
+        // search va permettre de vérifier que la valeur de l'input 
+        // match avec le schéma décrit dans regexEmail
+        // Si ça match la valeur sera égale à 0 (l'index du premier résultat), sinon -1
+        if(e.target.value.search(regexEmail) === 0){
+            allCheckIcon[1].style.display = "block"
+            allAlertMessage[1].style.display = "none"
+        }
+        else if(e.target.value.search(regexEmail) === -1){
+            allCheckIcon[1].style.display = "none"
+        }
     }
 })
 
@@ -156,38 +239,47 @@ CGU.addEventListener('click', function(e){
 
 // Vérification ensemble input avant envoie et si non affichage message pourquoi
 formRegister.addEventListener('submit', function(e){
-    if(e.target[0].value.length < 3){
-        allAlertMessage[0].style.display = "block"
-    }
-    if(e.target[1].value.search(regexEmail) === -1){
-        allAlertMessage[1].style.display = "block"
-    }
-    if(testAll < 3){
-        allAlertMessage[2].style.display = "block"
-    }
-    if(e.target[2].value !== e.target[3].value){
-        allAlertMessage[3].style.display = "block"
-    }
-    if(e.target[4].checked === false){
-        allAlertMessage[4].style.display = "block"
-    }
+    if(isRegistered === false){
+        if(e.target[0].value.length < 3){
+            allAlertMessage[0].style.display = "block"
+        }
+        if(e.target[1].value.search(regexEmail) === -1){
+            allAlertMessage[1].style.display = "block"
+        }
+        if(testAll < 3){
+            allAlertMessage[2].style.display = "block"
+        }
+        if(e.target[2].value !== e.target[3].value){
+            allAlertMessage[3].style.display = "block"
+        }
+        if(e.target[4].checked === false){
+            allAlertMessage[4].style.display = "block"
+        }
+        
+        if(e.target[0].value.length > 2
+            && e.target[1].value.search(regexEmail) !== -1
+            && testAll > 2
+            && e.target[2].value === e.target[3].value
+            && e.target[4].checked === true){
+                const userAccount = {
+                    name : e.target[0].value,
+                    email : e.target[1].value,
+                    password : valueInp
+                }
+                sessionStorage.setItem('userName', userAccount.name)
+                sessionStorage.setItem('userEmail', userAccount.email)
+                sessionStorage.setItem('userPassword', userAccount.password)
+
+                resetForm()
     
-    if(e.target[0].value.length > 2
-        && e.target[1].value.search(regexEmail) !== -1
-        && testAll > 2
-        && e.target[2].value === e.target[3].value
-        && e.target[4].checked === true){
-            console.log('OK pour envoie')
-            const userAccount = {
-                name : e.target[0].value,
-                email : e.target[1].value,
-                password : valueInp
-            }
-            sessionStorage.setItem('userName', userAccount.name)
-            sessionStorage.setItem('userEmail', userAccount.email)
-            sessionStorage.setItem('userPassword', userAccount.password)
-    }
-    else {
-        e.preventDefault();
+                // Switch to Connexion page
+                isRegistered = true
+                switchUI()
+                e.preventDefault()
+        }
+        else {
+            e.preventDefault()
+        }
     }
 })
+

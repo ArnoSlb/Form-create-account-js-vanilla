@@ -14,8 +14,8 @@
             <a href='https://fr.pngtree.com/so/salon-de-coiffure'><img id=logo src="./img/logo.png" alt="Logo"></a>
         </div>
         <div id="container_button_login">
-            <div class="button_login">Se connecter</div>
-            <div class="button_login">S'inscrire</div>
+            <div class="button_login" id="to_connect">Se connecter</div>
+            <div class="button_login" id="to_register">S'inscrire</div>
         </div>
     </header>
     <main>
@@ -45,6 +45,7 @@
                         <div class="strength_security_2"><span>moyen</span></div>
                         <div class="strength_security_3"><span>fort</span></div>
                     </div>
+                    <div id="forgot_pwd">Mot de passe oublié</div>
                 </div>
                 <div class="form_group">
                     <label for="password_check">Confirmez votre mot de passe</label>
@@ -56,13 +57,17 @@
                     <input type="checkbox" id="CGU">
                     <label for="CGU">J'accepte les CGU/CGV</label> 
                 </div>
+                <div class="checkbox_group">
+                    <input type="checkbox" id="stay_connected">
+                    <label for="stay_connected">Rester connecté.e</label> 
+                </div>
                 <span class="alert_message">Merci d'accepter les CGU/CGV</span>
                 
                 <button type="submit" id="button_submit">S'inscrire</button>
             </form>
             <div class="already_registered">
-                <p>Déja inscrit.e ?</p>
-                <p>Je me connecte</p>
+                <p id="sign_in_or_up_text">Déja inscrit.e ?</p>
+                <p id="sign_in_or_up">Je me connecte</p>
             </div>
         </div>
     </main>

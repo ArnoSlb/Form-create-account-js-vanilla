@@ -109,6 +109,12 @@ label {
     width: 5px;
 }
 
+#stay_connected {
+    margin: 0;
+    padding: 0;
+    width: 5px;
+}
+
 [type="checkbox"] {
 	opacity: 0.01;
 }
@@ -186,6 +192,17 @@ label {
 .strength_security_3 {
     color: green;
     border-color: green;
+}
+
+#forgot_pwd{
+    font-size: 13px;
+    text-align: right;
+    margin-right: 6%;
+    text-decoration: underline;
+    display: none;
+}
+#forgot_pwd:hover{
+    cursor: pointer;
 }
 
 #button_submit {
