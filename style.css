@@ -246,3 +246,32 @@ label {
     font-weight: bold;
     cursor: pointer;
 }
+
+#fail_connexion{
+    color: white;
+    background-color: crimson;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: none;
+    margin: 0 7%;
+}
+
+#connexion_successfull{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #54D501;
+    padding: 40px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    display: none;
+}
+
+
+#connexion_successfull img{
+    width: 150px;
+}
+
+
+

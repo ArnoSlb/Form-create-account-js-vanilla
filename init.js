@@ -19,6 +19,8 @@ const stayConnectedCheck = document.getElementById('stay_connected')
 const forgotPwd = document.getElementById('forgot_pwd')
 const buttonSubmit = document.getElementById('button_submit')
 const signInOrUp = document.getElementById('sign_in_or_up')
+const failConnexion = document.getElementById('fail_connexion')
+const successfullConnexion = document.getElementById('connexion_successfull')
 let isRegistered = false
 
 // const regexEmail = /\S+@\S+\.\S+/;
@@ -73,7 +75,8 @@ const resetForm = function(){
     strgthS3.style.display = "none"
     CGU.checked = false
     stayConnectedCheck.checked = false
-
+    failConnexion.style.display = "none"
+    successfullConnexion.style.display = "none"
 }  
 
 // Switch page connexion
@@ -144,63 +147,66 @@ let testAll = 0;
 inputPassword.addEventListener('input', function(e){
     valueInp = e.target.value
 
-    if(valueInp.search(specialCar) !== -1){
-        objValidation.symbole = 1;
-    }
-    if(valueInp.search(letters) !== -1){
-        objValidation.letter = 1;
-    }
-    if(valueInp.search(numbers) !== -1){
-        objValidation.number = 1;
-    }
-
-    if(e.inputType = 'deleteContentBackward'){
-        if(valueInp.search(specialCar) === -1){
-            objValidation.symbole = 0;
+    if(isRegistered === false){
+        if(valueInp.search(specialCar) !== -1){
+            objValidation.symbole = 1;
         }
-        if(valueInp.search(letters) === -1){
-            objValidation.letter = 0;
+        if(valueInp.search(letters) !== -1){
+            objValidation.letter = 1;
         }
-        if(valueInp.search(numbers) === -1){
-            objValidation.number = 0;
+        if(valueInp.search(numbers) !== -1){
+            objValidation.number = 1;
+        }
+    
+        if(e.inputType = 'deleteContentBackward'){
+            if(valueInp.search(specialCar) === -1){
+                objValidation.symbole = 0;
+            }
+            if(valueInp.search(letters) === -1){
+                objValidation.letter = 0;
+            }
+            if(valueInp.search(numbers) === -1){
+                objValidation.number = 0;
+            }
+        }
+    
+        testAll = objValidation.symbole + objValidation.letter + objValidation.number;
+    
+        if(testAll == 3){
+            allAlertMessage[2].style.display = "none"
+            allCheckIcon[2].style.display = "block"
+        }
+        else {
+            allCheckIcon[2].style.display = "none"
+        }
+    
+        // Force du mot de passe
+        if(valueInp.length > 0 && valueInp.length <= 5){
+            strengthSecurity.style.display = "flex"
+            strgthS1.style.display = "block"
+            strgthS2.style.display = "none"
+            strgthS3.style.display = "none"
+        }
+        else if(valueInp.length > 5 && valueInp.length <= 9){
+            strengthSecurity.style.display = "flex"
+            strgthS1.style.display = "block"
+            strgthS2.style.display = "block"
+            strgthS3.style.display = "none"
+        }
+        else if(valueInp.length > 9){
+            strengthSecurity.style.display = "flex"
+            strgthS1.style.display = "block"
+            strgthS2.style.display = "block"
+            strgthS3.style.display = "block"
+        }
+        else {
+            strengthSecurity.style.display = "none"
+            strgthS1.style.display = "none"
+            strgthS2.style.display = "none"
+            strgthS3.style.display = "none"
         }
     }
 
-    testAll = objValidation.symbole + objValidation.letter + objValidation.number;
-
-    if(testAll == 3){
-        allAlertMessage[2].style.display = "none"
-        allCheckIcon[2].style.display = "block"
-    }
-    else {
-        allCheckIcon[2].style.display = "none"
-    }
-
-    // Force du mot de passe
-    if(valueInp.length > 0 && valueInp.length <= 5){
-        strengthSecurity.style.display = "flex"
-        strgthS1.style.display = "block"
-        strgthS2.style.display = "none"
-        strgthS3.style.display = "none"
-    }
-    else if(valueInp.length > 5 && valueInp.length <= 9){
-        strengthSecurity.style.display = "flex"
-        strgthS1.style.display = "block"
-        strgthS2.style.display = "block"
-        strgthS3.style.display = "none"
-    }
-    else if(valueInp.length > 9){
-        strengthSecurity.style.display = "flex"
-        strgthS1.style.display = "block"
-        strgthS2.style.display = "block"
-        strgthS3.style.display = "block"
-    }
-    else {
-        strengthSecurity.style.display = "none"
-        strgthS1.style.display = "none"
-        strgthS2.style.display = "none"
-        strgthS3.style.display = "none"
-    }
 
     //Ajustement de la vérification du mot de passe si on change le mot de passe
     if (valueInpCheck === valueInp && valueInpCheck.length > 0){
@@ -280,6 +286,27 @@ formRegister.addEventListener('submit', function(e){
         else {
             e.preventDefault()
         }
+    } else if(isRegistered === true){
+        console.log('email enregistré', sessionStorage.getItem('userEmail'))
+        console.log('email soumis', e.target[1].value)
+        
+        console.log('pwd enregistré', sessionStorage.getItem('userPassword'))
+        console.log('pwd soumis', e.target[2].value)
+
+        if( e.target[1].value === sessionStorage.getItem('userEmail') && e.target[2].value === sessionStorage.getItem('userPassword')){
+            successfullConnexion.style.display = "block"
+            failConnexion.style.display = "none"
+        }
+        else if(e.target[1].value === sessionStorage.getItem('userEmail')){
+            failConnexion.style.display = "block"
+            failConnexion.innerText = "Mot de passe incorrect"
+        }
+        else{
+            failConnexion.style.display = "block"
+            failConnexion.innerText = "Aucun compte n'existe avec ce mail"
+        }
+
+        e.preventDefault()
     }
 })
 

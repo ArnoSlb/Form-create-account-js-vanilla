@@ -39,7 +39,7 @@
                     <label for="password">Mot de passe</label>
                     <input type="password" id="password">
                     <img src="img/check.png" alt="icone de verification" class="icon_check">
-                    <span class="alert_message">Un symbole, une lettre, un chiffre</span>
+                    <span class="alert_message">Un symbole, une lettre, un chiffre obligatoire</span>
                     <div class="strength_security">
                         <div class="strength_security_1"><span>faible</span></div>
                         <div class="strength_security_2"><span>moyen</span></div>
@@ -62,12 +62,17 @@
                     <label for="stay_connected">Rester connecté.e</label> 
                 </div>
                 <span class="alert_message">Merci d'accepter les CGU/CGV</span>
-                
+                <span id="fail_connexion"></span>
                 <button type="submit" id="button_submit">S'inscrire</button>
             </form>
+           
             <div class="already_registered">
                 <p id="sign_in_or_up_text">Déja inscrit.e ?</p>
                 <p id="sign_in_or_up">Je me connecte</p>
+            </div>
+            <div id="connexion_successfull">
+                <p>Connexion réussie</p>
+                <img src="./img/check.png" alt="">
             </div>
         </div>
     </main>
